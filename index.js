@@ -1,34 +1,38 @@
-var Crawler = require('simplecrawler');
-var cheerio = require('cheerio');
+const axios = require('axios');
+const xmlParser = require('xml2js');
+const cheerio = require('cheerio');
 
+axios
+    .get('http://pox.globo.com/sitemap/g1/2020/04/07_1.xml')
+    .then(function (response) {
+        xmlParser.parseString(response.data, async (err, result) => {
+            var urls = result.urlset.url.map((r) => r.loc);
 
-const secure_sources = [
-    // 'https://oglobo.globo.com/',
-    // 'https://blogs.oglobo.globo.com/lauro-jardim/post/sao-paulo-vai-estender-quarentena-ate-o-fim-de-abril.html',
-    // 'https://oglobo.globo.com/sociedade/coronavirus/',
-    "http://www.tribunadonorte.com.br/"
-];
+            for (let i = 0; i < urls.length; i++) {
+                const u = urls[i];
+                var url = u[0];
+                console.log(url);
+                var httpResponse = await axios.get(url);
+                var $ = cheerio.load(httpResponse.data);
+                var title = $('meta[property="og:title"]').prop('content');
+                var imageUrl = $('meta[property="og:image"]').prop('content');
+                var pubDate = $(
+                    'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time'
+                ).text();
 
-secure_sources.forEach(source => {
-    console.log(`starting fetch from ${source}`);
+                var news = {
+                    title: title,
+                    imageUrl: imageUrl,
+                    pubDate: pubDate,
+                    url: url,
+                };
 
-    var crawler = new Crawler(source);
-    
-    crawler.maxDepth = 2;
-    
-    crawler
-    .on('fetchcomplete', (queueItem, responseBody, response) => {
-        // var $ = cheerio.load(responseBody.toString('utf8'));
-        // var title = $('#article > section > section > main > section > section > h1').text();
-        // var content = $('#article > section > section > main > section > section > section.post__content--article.protected-content > article').text();
-
-        console.log(queueItem.url);
-        
-        var $ = cheerio.load(responseBody.toString('utf8'));
-        var title = $('meta[property="og:title"]').prop('content');
-        if (title) console.log(`>>>>>>>>>>>>> ${title}`);
-        
+                console.log(news);
+            }
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+    .then(function () {
     });
-
-    crawler.start();
-});

@@ -17,4 +17,4 @@ Ler uma lista de source profiles (apenas com 1 source), para testar o crawler. E
 - Criar white list
 - Criar rotina que cálcula o 'sentimento' de uma notícia (seriam o peso de palavras que estão no black list ou white list)
 - Criar rotina que categoriza as notícias encontradas entre 'sentimento bom', 'sentimento ruim' ou 'neutra'.
-- Ajustar rotina de relatório para que compreendSa a categoriazão de cada notícia.
+- Ajustar rotina de relatório para que compreenda a categoriazão de cada notícia.

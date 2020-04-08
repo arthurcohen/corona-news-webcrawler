@@ -8,6 +8,12 @@ const siteMapStub =
     </url>
 </urlset>`;
 
+const htmlUrlContentStub = 
+`<html>
+    <head></head>
+    <body></body>
+</html>`;
+
 jest.mock('axios');
 
 describe('fetch sitemap from url', () => {
@@ -18,7 +24,7 @@ describe('fetch sitemap from url', () => {
         });
 
         test('shouldn\'t fetch sitemap from url', async () => {
-            const response = await newsService.getSitemapFrom('');
+            const response = await newsService.getFromUrl('');
 
             expect(response.status).toEqual(404);
         });
@@ -31,23 +37,21 @@ describe('fetch sitemap from url', () => {
         });
 
         test('should fetch sitemap from url', async () => {
-            const response = await newsService.getSitemapFrom('');
+            const response = await newsService.getFromUrl('');
 
             expect(response.data).toEqual(siteMapStub);
         });
     });
 });
 
-describe('given a sitemap', () => {
+describe('given an existent sitemap', () => {
     var sitemap;
-
-    beforeEach(() => {
-        const resp = { data: siteMapStub };
-        newsService.getSitemapFrom = jest.fn((url) => resp);
-    });
     
     test('should get a news list from sitemap', async () => {
-        sitemap =  newsService.getSitemapFrom().data;
+        const resp = { data: siteMapStub };
+
+        newsService.getFromUrl = jest.fn((url) => resp);
+        sitemap =  newsService.getFromUrl().data;
 
         expect(sitemap).toBe(siteMapStub);
 
@@ -56,7 +60,21 @@ describe('given a sitemap', () => {
         expect(newsUrls).toHaveLength(1);
     });
 
-    test('should fetch news page from url', () => {
+    test('should get info from html news content', () => {
+        const resp = { data: htmlUrlContentStub };
+        const url = '';
 
+        const news = {
+            title: '',
+            pubDate: '',
+            imageURL: '',
+            url: ''
+        };
+
+        axios.get.mockResolvedValue(resp);
+        
+        const htmlUrlContent = newsService.getFromUrl(url);
+        
+        expect(htmlUrlContent).toEqual(htmlUrlContentStub);
     });
 });

@@ -7,11 +7,37 @@ const siteMapStub =
         </url>
     </urlset>`;
 
-const htmlUrlContentStub = 
+const titleStub = 'Title stub';
+const imageUrlStub = 'http://sourcestub.com/imageStub';
+const publishedDateStub = '01/01/0001 00:00:00';
+const htmlStub = 
 `<html>
-    <head></head>
-    <body></body>
+    <head>
+        <meta property="og:title" content="${titleStub}">
+        <meta property="og:image" content="${imageUrlStub}">
+    </head>
+    <body>${publishedDateStub}</body>
 </html>`;
+
+const sourceStub = 
+    {
+        sourceName: 'SourceStub',
+        sitemapUrl: 'http://sourcestub.com/sitemap',
+        profile: {
+            titlePattern: {
+                pattern: 'meta[property="og:title"]',
+                isProp: true
+            },
+            imagePattern: {
+                pattern: 'meta[property="og:image"]',
+                isProp: true,
+            },
+            publicationDatePattern: {
+                pattern: 'body',
+                isProp: false
+            }
+        }
+    };
 
 describe('given an existent sitemap', () => {
     
@@ -20,21 +46,12 @@ describe('given an existent sitemap', () => {
         expect(newsUrls).toHaveLength(1);
     });
 
-    // test('should get info from html news content', () => {
-    //     const resp = { data: htmlUrlContentStub };
-    //     const url = '';
-
-    //     const news = {
-    //         title: '',
-    //         pubDate: '',
-    //         imageURL: '',
-    //         url: ''
-    //     };
-
-    //     axios.get.mockResolvedValue(resp);
+    test('should get info from html news content', () => {
+        const news = newsService.getNewsFromHtml(htmlStub, sourceStub);
         
-    //     const htmlUrlContent = newsService.getFromUrl(url);
-        
-    //     expect(htmlUrlContent).toEqual(htmlUrlContentStub);
-    // });
+        expect(news.title).toBe(titleStub);
+        expect(news.imageUrl).toBe(imageUrlStub);
+        expect(news.pubDate).toBe(publishedDateStub);
+        expect(news.sourceName).toBe(sourceStub.sourceName);
+    });
 });

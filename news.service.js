@@ -9,15 +9,15 @@ async function getNewsUrlFromSitemap(sitemap) {
 function getNewsFromHtml(html, source) {
     const $ = cheerio.load(html);
     
-    const title = getProperty($, source.profile.titlePattern);
-    const imageUrl = getProperty($, source.profile.imagePattern);
-    const pubDate = getProperty($, source.profile.publicationDatePattern);
+    const title = getProperty($, source.profile.titlePattern).trim();
+    const imageUrl = getProperty($, source.profile.imagePattern).trim();
+    const pubDate = getProperty($, source.profile.publicationDatePattern).trim();
 
     const news = {
-        title: title,
-        imageUrl: imageUrl,
-        pubDate: pubDate,
-        sourceName: source.sourceName
+        title,
+        imageUrl,
+        pubDate,
+        sourceName: source.sourceName.trim()
     };
 
     return news;

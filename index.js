@@ -1,6 +1,5 @@
 const axios = require('axios');
 const xmlParser = require('xml2js');
-const cheerio = require('cheerio');
 const sources = require('./src/config/source-config');
 const { Parser } = require('json2csv');
 const newsService = require('./news.service');
@@ -12,27 +11,17 @@ async function batch(){
 
         const response = await axios.get(source.sitemapUrl);
         const urls = await newsService.getNewsUrlFromSitemap(response.data);
-        var allNews = [];
+        const allNews = [];
     
         for (let i = 0; i < 3 /*urls.length*/; i++) {
             var url = urls[i];
             var httpResponse = await axios.get(url);
-            var $ = cheerio.load(httpResponse.data);
-            var title = getProperty($, source.profile.titlePattern);
-            var imageUrl = getProperty($, source.profile.imagePattern);
-            var pubDate = getProperty($, source.profile.publicationDatePattern);
-    
-            var news = {
-                title: title,
-                imageUrl: imageUrl,
-                pubDate: pubDate,
-                url: url,
-                sourceName: source.sourceName
-            };
+
+            const news = newsService.getNewsFromHtml(httpResponse.data, source);
+            news.url = url;
     
             allNews.push(news);
             console.log(`Notícia ${i + 1} do ${source.sourceName}`);
-            
         }
     
         const parser = new Parser();
@@ -46,12 +35,5 @@ async function batch(){
     }
 }
 
-function getProperty($, pattern) {
-    if (pattern.isProp) {
-        return $(pattern.pattern).prop('content');
-    }
-
-    return $(pattern.pattern).text();
-}
 
 batch();

@@ -13,8 +13,8 @@ Ler uma lista de source profiles (apenas com 1 source), para testar o crawler. E
 - Criar rotina que exporta relatório com as notícias encontradas num formato 'amigável' para quem irá adicioná-las ao The Good News (xls, sheets, csv, etc.)
 - Fazer levantamento de quais sites de notícias confiáveis que podem entrar no The Good News
 - Criar profiles para os diferentes sites de notícia
-- Criar black list
-- Criar white list
+- Criar block list
+- Criar safe list
 - Criar rotina que cálcula o 'sentimento' de uma notícia (seriam o peso de palavras que estão no black list ou white list)
 - Criar rotina que categoriza as notícias encontradas entre 'sentimento bom', 'sentimento ruim' ou 'neutra'.
 - Ajustar rotina de relatório para que compreenda a categoriazão de cada notícia.

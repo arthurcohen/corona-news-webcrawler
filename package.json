@@ -16,8 +16,8 @@
     "cheerio": "^1.0.0-rc.3",
     "json2csv": "^5.0.0",
     "simplecrawler": "^1.1.8",
-    "xml2js": "^0.4.23",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.17",
@@ -30,7 +30,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "jest": "^25.2.7",
-    "ts-node": "^8.8.2"
+    "jest": "^25.2.7"
   }
 }

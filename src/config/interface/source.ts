@@ -1,9 +1,9 @@
-interface Pattern {
+export interface Pattern {
     pattern: string,
     isProp: boolean
 };
 
-export default interface Source {
+export interface Source {
     sourceName: string,
     sitemapUrl: string,
     profile: {

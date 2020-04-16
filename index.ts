@@ -11,12 +11,13 @@ async function batch() {
 
     for (const url of urls.splice(0, 2)) {
       const httpResponse = await axios.get(url);
-      const news = { url, ...newsService.getNewsFromHtml(httpResponse.data, source) };
+      const news = { ...newsService.getNewsFromHtml(httpResponse.data, source), url };
       allNews.push(news);
     }
   }
 
-  newsService.exportNewsToCsv(allNews);
+  const newsCSV = newsService.convertNewsToCsv(allNews);
+  newsService.exportNewsToCsv(newsCSV);
 }
 
 batch();

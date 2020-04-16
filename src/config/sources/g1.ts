@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import Source from '../interface/source';
+import { Source } from '../interface/source';
 
 const source: Source = {
   sourceName: 'G1',

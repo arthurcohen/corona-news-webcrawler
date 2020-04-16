@@ -1,4 +1,7 @@
 import newsService from './news.service';
+// eslint-disable-next-line no-unused-vars
+import News from './src/config/interface/news';
+import * as fs from 'fs';
 
 const siteMapStub =
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -39,6 +42,18 @@ const sourceStub =
   }
 };
 
+const newsStub: News[] = [
+  {
+    title: 'title',
+    imageUrl: 'http://sourcestub.com/imageUrl',
+    pubDate: '01/01/0001 00:00:00',
+    sourceName: 'sourceName',
+    url: 'http://sourcestub.com/url'
+  }
+];
+
+const testFilesPath = './testFiles';
+
 describe('given an existent sitemap', () => {
   test('should get a news list from sitemap', async () => {
     const newsUrls = await newsService.getNewsUrlFromSitemap(siteMapStub);
@@ -55,6 +70,14 @@ describe('given an existent sitemap', () => {
   });
 
   test('should write file from sources', () => {
+    const csvStub = newsService.convertNewsToCsv(newsStub);
+    const path = `${newsService.exportNewsToCsv(csvStub, testFilesPath)}`;
 
+    const data = fs.readFileSync(path);
+    expect(data.toString()).toBe(csvStub);
+  });
+
+  afterAll(() => {
+    fs.rmdirSync(testFilesPath);
   });
 });

@@ -1,5 +1,7 @@
 const cheerio = require('cheerio');
 const xmlParser = require('xml2js');
+const { Parser } = require('json2csv');
+const fs = require('fs');
 
 async function getNewsUrlFromSitemap(sitemap) {
     parsedSitemap = await xmlParser.parseStringPromise(sitemap);
@@ -32,4 +34,15 @@ function getProperty($, pattern) {
     return $(pattern.pattern).text();
 }
 
-module.exports = { getNewsUrlFromSitemap, getNewsFromHtml };
+function exportNewsToCsv(allNews) {
+    const parser = new Parser();
+    const csv = parser.parse(allNews);
+
+    fs.writeFile(`the-good-news-${new Date().toISOString()}.csv`, csv, 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+    });
+}
+
+module.exports = { getNewsUrlFromSitemap, getNewsFromHtml, exportNewsToCsv };

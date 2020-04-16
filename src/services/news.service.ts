@@ -3,9 +3,9 @@ import * as xmlParser from 'xml2js';
 import { Parser } from 'json2csv';
 import * as fs from 'fs';
 // eslint-disable-next-line no-unused-vars
-import News from './src/config/interface/news';
+import News from '../interfaces/news';
 // eslint-disable-next-line no-unused-vars
-import { Source, Pattern } from './src/config/interface/source';
+import { Source, Pattern } from '../interfaces/source';
 
 async function getNewsUrlFromSitemap(sitemap: string): Promise<string[]> {
   const parsedSitemap = await xmlParser.parseStringPromise(sitemap);

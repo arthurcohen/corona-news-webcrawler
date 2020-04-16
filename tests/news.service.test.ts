@@ -1,8 +1,8 @@
-import newsService from './news.service';
+import newsService from '../src/services/news.service';
 // eslint-disable-next-line no-unused-vars
-import News from './src/config/interface/news';
+import News from '../src/interfaces/news';
 import * as fs from 'fs';
-import DirUtils from './src/tests/utils/DirUtils';
+import DirUtils from '../src/utils/DirUtils';
 
 const siteMapStub =
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">

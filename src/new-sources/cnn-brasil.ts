@@ -4,6 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'CNN Brasil',
   sitemapUrl: 'https://www.cnnbrasil.com.br/sitemap-news.xml',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

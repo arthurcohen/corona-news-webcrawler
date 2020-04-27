@@ -5,7 +5,7 @@ import newsService from './services/news.service';
 async function batch() {
   const allNews = [];
 
-  for (const source of sources) {
+  for (const source of await sources) {
     const response = await axios.get(source.sitemapUrl);
     const urls = await newsService.getNewsUrlFromSitemap(response.data);
 

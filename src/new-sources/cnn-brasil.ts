@@ -2,8 +2,8 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'G1',
-  sitemapUrl: 'http://pox.globo.com/sitemap/g1/2020/04/07_1.xml',
+  sourceName: 'CNN Brasil',
+  sitemapUrl: 'https://www.cnnbrasil.com.br/sitemap-news.xml',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -14,8 +14,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time',
-      isProp: false
+      pattern: 'body > #__next > div.jsx-1583902798.main-layout > div > div:nth-child(5) > div.col-sm-7 > div > div > div.jsx-3805853902.authors-date > span',
+      isProp: true
     }
   }
 };

@@ -4,6 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'G1',
   sitemapUrl: 'http://pox.globo.com/sitemap/g1/2020/04/07_1.xml',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

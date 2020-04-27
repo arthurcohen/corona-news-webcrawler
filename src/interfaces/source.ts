@@ -6,6 +6,7 @@ export interface Pattern {
 export interface Source {
     sourceName: string,
     sitemapUrl: string,
+    language: string,
     profile: {
         titlePattern: Pattern,
         imagePattern: Pattern,

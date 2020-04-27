@@ -4,6 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'OGlobo',
   sitemapUrl: 'https://oglobo.globo.com/sitemap/today.xml',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

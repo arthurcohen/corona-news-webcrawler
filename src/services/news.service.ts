@@ -31,11 +31,15 @@ function getNewsFromHtml(html: string, source: Source): News {
 }
 
 function getProperty($: CheerioStatic, pattern: Pattern): string {
+  let property: string;
+
   if (pattern.isProp) {
-    return $(pattern.pattern).prop('content');
+    property = $(pattern.pattern).prop('content');
+  } else {
+    property = $(pattern.pattern).text();
   }
 
-  return $(pattern.pattern).text();
+  return property || '';
 }
 
 function convertNewsToCsv(allNews: News[]): string {

@@ -21,7 +21,6 @@ async function batch() {
   }
 
   process.stdout.write('fetching news from');
-  console.log();
   for (const source of sources) {
     process.stdout.write(`\n${source.sourceName}: `);
     const startTime = new Date().getTime();

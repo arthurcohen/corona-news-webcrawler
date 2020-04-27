@@ -2,7 +2,7 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'Folha de SP',
+  sourceName: 'Folha de S. Paulo',
   sitemapUrl: 'https://www1.folha.uol.com.br/folha-online-sitemap.xml',
   language: 'pt-br',
   profile: {

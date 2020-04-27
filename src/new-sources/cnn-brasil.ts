@@ -15,7 +15,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > #__next > div.jsx-1583902798.main-layout > div > div:nth-child(5) > div.col-sm-7 > div > div > div.jsx-3805853902.authors-date > span',
+      pattern: '#__next > div.jsx-1583902798.main-layout > div > div:nth-child(5) > div.col-sm-7 > div > div > div.jsx-3805853902.authors-date > span.jsx-3805853902',
       isProp: true
     }
   }

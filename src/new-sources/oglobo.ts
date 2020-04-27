@@ -2,7 +2,7 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'OGlobo',
+  sourceName: 'O Globo',
   sitemapUrl: 'https://oglobo.globo.com/sitemap/today.xml',
   language: 'pt-br',
   profile: {

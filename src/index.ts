@@ -40,7 +40,6 @@ async function batch() {
     const urls = await newsService.getNewsUrlFromSitemap(response.data);
 
     for (const url of urls) {
-      process.stdout.write(".");
       const httpResponse = await axios.get(url);
 
       const news = {
@@ -51,9 +50,10 @@ async function batch() {
         allNews.push(news);
         const newsCSV = newsService.convertNewsToCsv(allNews);
         newsService.exportNewsToCsv(newsCSV);
-        process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
+        process.stdout.write(".");
       }
     }
+    process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
 }
 

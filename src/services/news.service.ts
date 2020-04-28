@@ -94,7 +94,7 @@ function exportNewsToCsv(csv: string, path = './files'): string {
 function calculateRank(title: string) : number {
   let rank = 0;
   reservedWords.forEach(reservedWord => {
-    if (title.includes(reservedWord.name)) {
+    if (title.toLowerCase().includes(reservedWord.name)) {
       rank += reservedWord.rank;
     }
   });

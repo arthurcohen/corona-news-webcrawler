@@ -46,7 +46,7 @@ async function batch() {
         ...newsService.getNewsFromHtml(httpResponse.data, source, url)
       };
 
-      if (news.pubDate === today) {
+      if (!news.pubDate || news.pubDate === today) {
         news.rank = newsService.calculateRank(news.title);
         if (news.rank !== 0) {
           allNews.push(news);

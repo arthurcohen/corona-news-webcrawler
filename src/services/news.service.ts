@@ -51,6 +51,8 @@ function getDateFromURL(url): string {
 function getDateFromString(date): string {
   const matches = date.split("-");
 
+  if (matches.length <= 1) return "";
+
   var day = matches[2].slice(0, 2);
   var month = matches[1];
   var year = matches[0];
@@ -76,7 +78,7 @@ function convertNewsToCsv(allNews: News[]): string {
 }
 
 function exportNewsToCsv(csv: string, path = "./files"): string {
-  const fileName = `${path}/the-good-news-${new Date().toISOString()}.csv`;
+  const fileName = `${path}/the-good-news.csv`;
   try {
     fs.mkdirSync(path);
   } catch {

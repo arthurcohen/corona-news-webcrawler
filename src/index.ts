@@ -10,20 +10,20 @@ async function batch() {
     const response = await axios.get(source.sitemapUrl);
     const urls = await newsService.getNewsUrlFromSitemap(response.data);
 
-    for (const url of urls.splice(0, 2)) {
+    for (const url of urls) {
       const httpResponse = await axios.get(url);
+
       const news = {
         ...newsService.getNewsFromHtml(httpResponse.data, source, url),
       };
 
       if (news.pubDate === today) {
         allNews.push(news);
+        const newsCSV = newsService.convertNewsToCsv(allNews);
+        newsService.exportNewsToCsv(newsCSV);
       }
     }
   }
-
-  const newsCSV = newsService.convertNewsToCsv(allNews);
-  newsService.exportNewsToCsv(newsCSV);
 }
 
 function formatDate() {

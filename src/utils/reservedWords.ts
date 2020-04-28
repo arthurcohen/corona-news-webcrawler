@@ -31,7 +31,9 @@ export default {
     { name: 'caixões', rank: -5 },
     { name: 'enterro', rank: -5 },
     { name: 'eleva caso', rank: -5 },
-    { name: 'morre', rank: -5 }
+    { name: 'morre', rank: -5 },
+    { name: 'suicida', rank: -5 },
+    { name: 'suicidou', rank: -5 }
   ],
   'en-us': [
     { name: 'corona', rank: 2 },

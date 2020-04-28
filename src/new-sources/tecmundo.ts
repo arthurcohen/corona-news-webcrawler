@@ -2,8 +2,9 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'Época',
-  sitemapUrl: 'https://oglobo.globo.com/sitemap/today-epoca.xml',
+  sourceName: 'Tecmundo',
+  sitemapUrl: 'https://www.tecmundo.com.br/sitemap/noticias/1.xml',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -14,7 +15,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'meta[property="article:published_time"]',
+      pattern: 'body > #js-article-date > strong',
       isProp: true
     }
   }

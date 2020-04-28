@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
+import { Source } from './../interfaces/source';
 import { readdirSync } from 'fs';
 import { resolve, join } from 'path';
 
-const loadSources: Function = async (sourcesPath = '../new-sources/') => {
+const loadSources = async (sourcesPath = '../new-sources/'): Promise<Source[]> => {
   try {
     const pathToNewsSources = resolve(__dirname, sourcesPath);
     const newsSouresDirectory = readdirSync(pathToNewsSources);

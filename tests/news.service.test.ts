@@ -27,6 +27,7 @@ const sourceStub =
 {
   sourceName: 'SourceStub',
   sitemapUrl: 'http://sourcestub.com/sitemap',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

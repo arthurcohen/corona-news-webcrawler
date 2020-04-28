@@ -4,6 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'R7',
   sitemapUrl: 'https://www.r7.com/default_sitemaps.xml',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

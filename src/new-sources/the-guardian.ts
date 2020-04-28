@@ -2,9 +2,9 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'G1',
-  sitemapUrl: 'http://pox.globo.com/sitemap/g1/2020/04/27_1.xml',
-  language: 'pt-br',
+  sourceName: 'The Guardian',
+  sitemapUrl: 'https://www.theguardian.com/sitemaps/news.xml',
+  language: 'en-us',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -15,8 +15,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time',
-      isProp: false
+      pattern: 'meta[property="article:published_time"]',
+      isProp: true
     }
   }
 };

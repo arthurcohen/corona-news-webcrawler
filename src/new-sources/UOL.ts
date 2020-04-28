@@ -2,8 +2,8 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'G1',
-  sitemapUrl: 'http://pox.globo.com/sitemap/g1/2020/04/27_1.xml',
+  sourceName: 'UOL',
+  sitemapUrl: 'https://noticias.uol.com.br/sitemap/v2/today.xml',
   language: 'pt-br',
   profile: {
     titlePattern: {
@@ -15,8 +15,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time',
-      isProp: false
+      pattern: 'body > article > div:nth-child(2) > div > div.col-sm-24.col-md-16.col-lg-17.content-article > div > div.col-xs-8.col-sm-21.col-md-21 > div.image-content-pad > div.author',
+      isProp: true
     }
   }
 };

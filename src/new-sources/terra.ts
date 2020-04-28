@@ -2,8 +2,8 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'G1',
-  sitemapUrl: 'http://pox.globo.com/sitemap/g1/2020/04/27_1.xml',
+  sourceName: 'Terra',
+  sitemapUrl: 'https://www.terra.com.br/sitemap/page/1/20e07ef2795b2310VgnVCM3000009af154d0RCRD.xml?is_news=false',
   language: 'pt-br',
   profile: {
     titlePattern: {
@@ -15,8 +15,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time',
-      isProp: false
+      pattern: 'meta[name="publishdate"]',
+      isProp: true
     }
   }
 };

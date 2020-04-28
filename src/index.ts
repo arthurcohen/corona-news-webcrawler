@@ -1,6 +1,6 @@
-import axios from "axios";
-import newsService from "./services/news.service";
-import sourceFactory from "./config/source-config";
+import axios from 'axios';
+import newsService from './services/news.service';
+import sourceFactory from './config/source-config';
 
 async function batch() {
   var today = formatDate();
@@ -26,13 +26,13 @@ async function batch() {
     process.stdout.write(
       `The given language option is invalid: ${languageOption}\n`
     );
-    process.stdout.write("The available language option are:\n");
+    process.stdout.write('The available language option are:\n');
     languagesAvailable.forEach((l) => process.stdout.write(`\t${l}\n`));
 
-    process.stdout.write("ignoring language filter\n");
+    process.stdout.write('ignoring language filter\n');
   }
 
-  process.stdout.write("fetching news from");
+  process.stdout.write('fetching news from');
   for (const source of sources) {
     process.stdout.write(`\n${source.sourceName}: `);
     const startTime = new Date().getTime();
@@ -43,14 +43,19 @@ async function batch() {
       const httpResponse = await axios.get(url);
 
       const news = {
-        ...newsService.getNewsFromHtml(httpResponse.data, source, url),
+        ...newsService.getNewsFromHtml(httpResponse.data, source, url)
       };
 
       if (news.pubDate === today) {
-        allNews.push(news);
-        const newsCSV = newsService.convertNewsToCsv(allNews);
-        newsService.exportNewsToCsv(newsCSV);
-        process.stdout.write(".");
+        news.rank = newsService.calculateRank(news.title);
+        if (news.rank !== 0) {
+          allNews.push(news);
+          const newsCSV = newsService.convertNewsToCsv(allNews);
+          newsService.exportNewsToCsv(newsCSV);
+          process.stdout.write('.');
+        }
+      } else {
+        break;
       }
     }
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
@@ -58,15 +63,15 @@ async function batch() {
 }
 
 function formatDate() {
-  var d = new Date(),
-    month = "" + (d.getMonth() + 1),
-    day = "" + d.getDate(),
-    year = d.getFullYear();
+  var d = new Date();
+  var month = '' + (d.getMonth() + 1);
+  var day = '' + d.getDate();
+  var year = d.getFullYear();
 
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
 
-  return [day, month, year].join("/");
+  return [day, month, year].join('/');
 }
 
 export default batch;

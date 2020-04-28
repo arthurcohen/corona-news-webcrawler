@@ -1,10 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 
+const date = new Date();
+const month = String(date.getMonth() + 1).padStart(2, '0');
+
 const source: Source = {
-  sourceName: 'The Independent',
-  sitemapUrl: 'https://www.independent.co.uk/googlenewssitemap',
-  language: 'en-us',
+  sourceName: 'Nexo',
+  sitemapUrl: `https://www.nexojornal.com.br/sitemap-2020-${month}.xml`,
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -15,7 +18,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'meta[property="article:published_time"]',
+      pattern: 'meta[name="articlePublishTime"]',
       isProp: true
     }
   }

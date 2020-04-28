@@ -1,9 +1,10 @@
 import axios from 'axios';
 import newsService from './services/news.service';
 import sourceFactory from './config/source-config';
+import dateParser from './utils/dateParser';
 
 async function batch() {
-  var today = formatDate();
+  var today = dateParser.formatDate();
   const allNews = [];
   let sources = await sourceFactory;
 
@@ -36,19 +37,32 @@ async function batch() {
   for (const source of sources) {
     process.stdout.write(`\n${source.sourceName}: `);
     const startTime = new Date().getTime();
-    const response = await axios.get(source.sitemapUrl);
+    let response;
+    try {
+      response = await axios.get(source.sitemapUrl);
+    } catch (e) {
+      process.stdout.write('Error get sitemapUrl\n');
+      continue;
+    }
+
     const urls = await newsService.getNewsUrlFromSitemap(response.data);
 
     for (const url of urls) {
-      const httpResponse = await axios.get(url);
+      let httpResponse;
+      try {
+        httpResponse = await axios.get(url);
+      } catch (e) {
+        process.stdout.write('x');
+        continue;
+      }
 
       const news = {
         ...newsService.getNewsFromHtml(httpResponse.data, source, url)
       };
 
       if (!news.pubDate || news.pubDate === today) {
-        news.rank = newsService.calculateRank(news.title);
-        if (news.rank !== 0) {
+        news.rank = newsService.calculateRank(news.title, languageOption);
+        if (news.rank > 0) {
           allNews.push(news);
           const newsCSV = newsService.convertNewsToCsv(allNews);
           newsService.exportNewsToCsv(newsCSV);
@@ -60,18 +74,6 @@ async function batch() {
     }
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
-}
-
-function formatDate() {
-  var d = new Date();
-  var month = '' + (d.getMonth() + 1);
-  var day = '' + d.getDate();
-  var year = d.getFullYear();
-
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-
-  return [day, month, year].join('/');
 }
 
 export default batch;

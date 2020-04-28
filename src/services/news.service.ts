@@ -7,11 +7,20 @@ import News from '../interfaces/news';
 // eslint-disable-next-line no-unused-vars
 import { Source, Pattern } from '../interfaces/source';
 import reservedWords from '../utils/reservedWords';
+import dateParser from '../utils/dateParser';
 
 async function getNewsUrlFromSitemap(sitemap: string): Promise<string[]> {
   const parsedSitemap = await xmlParser.parseStringPromise(sitemap);
-  return parsedSitemap.urlset.url.map((r) => r.loc[0]);
-}
+  return getRecursiveUrlSet(parsedSitemap.urlset);
+};
+
+function getRecursiveUrlSet(urlset: any) {
+  if (urlset.urlset != null) {
+    return getRecursiveUrlSet(urlset.urlset[0]);
+  }
+
+  return urlset.url.map((r) => r.loc[0]);
+};
 
 function getNewsFromHtml(html: string, source: Source, url: string): News {
   const $ = cheerio.load(html);
@@ -19,9 +28,9 @@ function getNewsFromHtml(html: string, source: Source, url: string): News {
   const title = getProperty($, source.profile.titlePattern).trim();
   const imageUrl = getProperty($, source.profile.imagePattern).trim();
 
-  const date = getDateFromURL(url);
+  const date = dateParser.getDateFromURL(url);
   const pubDate = !date
-    ? getDateFromString(
+    ? dateParser.getDateFromString(
       getProperty($, source.profile.publicationDatePattern).trim()
     )
     : date;
@@ -36,30 +45,6 @@ function getNewsFromHtml(html: string, source: Source, url: string): News {
   };
 
   return news;
-}
-
-function getDateFromURL(url): string {
-  var matches = url.match(/(\d{4})\/(\d{2})\/(\d{2})/);
-
-  if (!matches || matches.length <= 1) return '';
-
-  var day = matches[3];
-  var month = matches[2];
-  var year = matches[1];
-
-  return day + '/' + month + '/' + year;
-}
-
-function getDateFromString(date): string {
-  const matches = date.split('-');
-
-  if (!matches || matches.length <= 1) return '';
-
-  var day = matches[2].slice(0, 2);
-  var month = matches[1];
-  var year = matches[0];
-
-  return day + '/' + month + '/' + year;
 }
 
 function getProperty($: CheerioStatic, pattern: Pattern): string {
@@ -91,13 +76,15 @@ function exportNewsToCsv(csv: string, path = './files'): string {
   return fileName;
 }
 
-function calculateRank(title: string) : number {
+function calculateRank(title: string, language:string) : number {
   let rank = 0;
-  reservedWords.forEach(reservedWord => {
-    if (title.toLowerCase().includes(reservedWord.name)) {
-      rank += reservedWord.rank;
-    }
-  });
+  if (reservedWords[language]) {
+    reservedWords[language].forEach(reservedWord => {
+      if (title.toLowerCase().includes(reservedWord.name)) {
+        rank += reservedWord.rank;
+      }
+    });
+  }
   return rank;
 }
 

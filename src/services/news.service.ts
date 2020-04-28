@@ -12,15 +12,13 @@ async function getNewsUrlFromSitemap(sitemap: string): Promise<string[]> {
   return getRecursiveUrlSet(parsedSitemap.urlset);
 };
 
-function getRecursiveUrlSet(urlset: any)
-{
-  if (urlset.urlset != null)
-  {
+function getRecursiveUrlSet(urlset: any) {
+  if (urlset.urlset != null) {
     return getRecursiveUrlSet(urlset.urlset[0]);
   }
 
   return urlset.url.map((r) => r.loc[0]);
-}
+};
 
 function getNewsFromHtml(html: string, source: Source): News {
   const $ = cheerio.load(html);

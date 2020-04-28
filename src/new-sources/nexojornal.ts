@@ -7,6 +7,7 @@ const month = String(date.getMonth() + 1).padStart(2, '0');
 const source: Source = {
   sourceName: 'Nexo',
   sitemapUrl: `https://www.nexojornal.com.br/sitemap-2020-${month}.xml`,
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

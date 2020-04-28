@@ -51,10 +51,9 @@ async function batch() {
         allNews.push(news);
         const newsCSV = newsService.convertNewsToCsv(allNews);
         newsService.exportNewsToCsv(newsCSV);
+        process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
       }
     }
-
-    process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
 }
 

@@ -68,8 +68,6 @@ async function batch() {
           newsService.exportNewsToCsv(newsCSV);
           process.stdout.write('.');
         }
-      } else {
-        break;
       }
     }
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);

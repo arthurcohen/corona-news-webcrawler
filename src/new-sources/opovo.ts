@@ -19,7 +19,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'time[itemprop=datePublished"]',
+      pattern: 'meta[property="article:published_time"]',
       isProp: true
     }
   }

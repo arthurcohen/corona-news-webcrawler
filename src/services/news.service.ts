@@ -39,7 +39,7 @@ function getNewsFromHtml(html: string, source: Source, url: string): News {
 function getDateFromURL(url): string {
   var matches = url.match(/(\d{4})\/(\d{2})\/(\d{2})/);
 
-  if (!matches) return "";
+  if (matches.length <= 1) return "";
 
   var day = matches[3];
   var month = matches[2];

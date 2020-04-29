@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Diário de Pernambuco',
   sitemapUrl: 'https://www.diariodepernambuco.com.br/noticia_ciencia-e-saude-sitemap.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

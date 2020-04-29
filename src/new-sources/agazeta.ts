@@ -2,7 +2,7 @@ import dateParser from '../utils/dateParser';
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 
-const today = dateParser.formatDate();
+const today = dateParser.getTodayDate();
 const [day, month, year] = today.split('/');
 
 const source: Source = {

@@ -2,15 +2,14 @@
 import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
 
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = date.getDate();
+const today = dateParser.getTodayDate();
+const [day, month] = today.split('/');
 
 const source: Source = {
   sourceName: 'O Povo',
   sitemapUrl: `https://www.opovo.com.br/sitemap/2020/${month}/${day}.xml`,
   language: 'pt-br',
-  date: dateParser.getTodayDate(),
+  date: today,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

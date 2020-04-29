@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Correio Braziliense',
   sitemapUrl: 'https://www.correiobraziliense.com.br/noticia_127983242361_outros_ultimas-noticias_sitemap.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[itemprop="name"]',

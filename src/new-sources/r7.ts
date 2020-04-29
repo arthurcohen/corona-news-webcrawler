@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'R7',
   sitemapUrl: 'https://www.r7.com/default_sitemaps.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

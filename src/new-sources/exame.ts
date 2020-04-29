@@ -2,15 +2,13 @@
 import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
 
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = date.getDate();
-const year = date.getFullYear();
+const today = dateParser.getTodayDate();
+const [day, month, year] = today.split('/');
 const source: Source = {
   sourceName: 'Exame',
   sitemapUrl: `https://exame.abril.com.br/sitemap.xml?yyyy=${year}&mm=${month}&dd=${day}`,
   language: 'pt-br',
-  date: dateParser.getTodayDate(),
+  date: today,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

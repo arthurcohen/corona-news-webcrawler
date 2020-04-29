@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
+import dateParser from '../utils/dateParser';
+
+const today = dateParser.getTodayDate();
+const [month] = today.split('/');
 
 const source: Source = {
   sourceName: 'Nexo',
   sitemapUrl: `https://www.nexojornal.com.br/sitemap-2020-${month}.xml`,
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

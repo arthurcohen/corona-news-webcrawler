@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Estadão',
   sitemapUrl: 'https://www.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

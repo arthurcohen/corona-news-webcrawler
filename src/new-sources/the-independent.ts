@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'The Independent',
   sitemapUrl: 'https://www.independent.co.uk/googlenewssitemap',
   language: 'en-us',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

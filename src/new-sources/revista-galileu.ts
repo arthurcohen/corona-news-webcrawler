@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Revista Galileu',
   sitemapUrl: 'https://revistagalileu.globo.com/sitemap/galileu/sitemapnews.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

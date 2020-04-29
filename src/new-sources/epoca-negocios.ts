@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Época Negócios',
   sitemapUrl: 'https://epocanegocios.globo.com/sitemap/epoca-negocios/sitemapnews.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

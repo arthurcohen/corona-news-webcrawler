@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Jornal Estado de Minas',
   sitemapUrl: 'https://www.em.com.br/sitemapnews.xml',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

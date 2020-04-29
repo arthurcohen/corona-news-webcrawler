@@ -5,7 +5,6 @@ const source: Source = {
   sourceName: 'Terra',
   sitemapUrl: 'https://www.terra.com.br/sitemap/page/1/20e07ef2795b2310VgnVCM3000009af154d0RCRD.xml?is_news=false',
   language: 'pt-br',
-  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

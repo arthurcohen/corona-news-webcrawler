@@ -6,6 +6,8 @@ import * as fs from 'fs';
 import News from '../interfaces/news';
 // eslint-disable-next-line no-unused-vars
 import { Source, Pattern } from '../interfaces/source';
+import reservedWords from '../utils/reservedWords';
+import dateParser from '../utils/dateParser';
 
 async function getNewsUrlFromSitemap(sitemap: string): Promise<string[]> {
   const parsedSitemap = await xmlParser.parseStringPromise(sitemap);
@@ -20,19 +22,26 @@ function getRecursiveUrlSet(urlset: any) {
   return urlset.url.map((r) => r.loc[0]);
 };
 
-function getNewsFromHtml(html: string, source: Source): News {
+function getNewsFromHtml(html: string, source: Source, url: string): News {
   const $ = cheerio.load(html);
 
   const title = getProperty($, source.profile.titlePattern).trim();
   const imageUrl = getProperty($, source.profile.imagePattern).trim();
-  const pubDate = getProperty($, source.profile.publicationDatePattern).trim();
+
+  const date = dateParser.getDateFromURL(url);
+  const pubDate = !date
+    ? dateParser.getDateFromString(
+      getProperty($, source.profile.publicationDatePattern).trim()
+    )
+    : date;
 
   const news: News = {
     title,
+    url: url,
     imageUrl,
-    pubDate,
     sourceName: source.sourceName.trim(),
-    url: ''
+    pubDate,
+    rank: 0
   };
 
   return news;
@@ -56,14 +65,33 @@ function convertNewsToCsv(allNews: News[]): string {
 }
 
 function exportNewsToCsv(csv: string, path = './files'): string {
-  const fileName = `${path}/the-good-news-${new Date().toISOString()}.csv`;
+  const fileName = `${path}/the-good-news.csv`;
   try {
     fs.mkdirSync(path);
   } catch {
     // dir already exists
   }
   fs.writeFileSync(fileName, csv, 'utf8');
+
   return fileName;
 }
 
-export default { getNewsUrlFromSitemap, getNewsFromHtml, exportNewsToCsv, convertNewsToCsv };
+function calculateRank(title: string, language:string) : number {
+  let rank = 0;
+  if (reservedWords[language]) {
+    reservedWords[language].forEach(reservedWord => {
+      if (title.toLowerCase().includes(reservedWord.name)) {
+        rank += reservedWord.rank;
+      }
+    });
+  }
+  return rank;
+}
+
+export default {
+  getNewsUrlFromSitemap,
+  getNewsFromHtml,
+  exportNewsToCsv,
+  convertNewsToCsv,
+  calculateRank
+};

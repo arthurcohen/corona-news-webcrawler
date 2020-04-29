@@ -42,6 +42,7 @@ export default {
     { name: 'records', rank: 5 },
     { name: 'beats', rank: 10 },
     { name: 'heal', rank: 10 },
+    { name: 'help', rank: 10 },
     { name: 'lockdown', rank: 2 },
     { name: 'good news', rank: 10 },
     { name: 'success', rank: 10 },

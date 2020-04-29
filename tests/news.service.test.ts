@@ -67,7 +67,7 @@ describe('given an existent sitemap', () => {
   });
 
   test('should get info from html news content', () => {
-    const news = newsService.buildNews(htmlStub, sourceStub, url, 's');
+    const news = newsService.buildNews(htmlStub, sourceStub, url);
 
     expect(news.title).toBe(titleStub);
     expect(news.imageUrl).toBe(imageUrlStub);

@@ -21,7 +21,7 @@ function getRecursiveUrlSet(urlset: any) {
   return urlset.url.map((r) => r.loc[0]);
 };
 
-function buildNews(html: string, source: Source, url: string, language:string): News {
+function buildNews(html: string, source: Source, url: string): News {
   const $ = cheerio.load(html);
 
   const title = getProperty($, source.profile.titlePattern).trim();
@@ -42,7 +42,7 @@ function buildNews(html: string, source: Source, url: string, language:string): 
     imageUrl,
     sourceName: source.sourceName.trim(),
     pubDate,
-    rank: calculateRank(title, language)
+    rank: calculateRank(title, source.language)
   };
 
   return news;

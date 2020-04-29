@@ -55,7 +55,7 @@ async function batch() {
       }
 
       const news = {
-        ...newsService.buildNews(httpResponse.data, source, url, languageOption)
+        ...newsService.buildNews(httpResponse.data, source, url)
       };
 
       if (newsService.checkNews(news)) {

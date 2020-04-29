@@ -5,6 +5,7 @@ const source: Source = {
   sourceName: 'The Guardian',
   sitemapUrl: 'https://www.theguardian.com/sitemaps/news.xml',
   language: 'en-us',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

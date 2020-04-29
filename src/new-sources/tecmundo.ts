@@ -5,6 +5,7 @@ const source: Source = {
   sourceName: 'Tecmundo',
   sitemapUrl: 'https://www.tecmundo.com.br/sitemap/noticias/1.xml',
   language: 'pt-br',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

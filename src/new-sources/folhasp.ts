@@ -5,6 +5,7 @@ const source: Source = {
   sourceName: 'Folha de S. Paulo',
   sitemapUrl: 'https://www1.folha.uol.com.br/folha-online-sitemap.xml',
   language: 'pt-br',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

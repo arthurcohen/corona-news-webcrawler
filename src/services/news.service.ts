@@ -27,13 +27,8 @@ function getNewsFromHtml(html: string, source: Source, url: string): News {
 
   const title = getProperty($, source.profile.titlePattern).trim();
   const imageUrl = getProperty($, source.profile.imagePattern).trim();
-
-  const date = dateParser.getDateFromURL(url);
-  const pubDate = !date
-    ? dateParser.getDateFromString(
-      getProperty($, source.profile.publicationDatePattern).trim()
-    )
-    : date;
+  const date = source.date;
+  const pubDate = !date ? dateParser.getDateFromString(getProperty($, source.profile.publicationDatePattern).trim()) : date;
 
   const news: News = {
     title,

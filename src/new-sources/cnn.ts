@@ -5,6 +5,7 @@ const source: Source = {
   sourceName: 'CNN',
   sitemapUrl: 'https://edition.cnn.com/sitemaps/cnn/news.xml',
   language: 'en-us',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

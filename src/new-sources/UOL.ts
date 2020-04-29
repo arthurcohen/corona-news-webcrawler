@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import dateParser from '../utils/dateParser';
 
 const source: Source = {
   sourceName: 'UOL',
   sitemapUrl: 'https://noticias.uol.com.br/sitemap/v2/today.xml',
   language: 'pt-br',
+  date: dateParser.formatDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

@@ -8,6 +8,7 @@ const source: Source = {
   sourceName: 'IG',
   sitemapUrl: `https://ultimosegundo.ig.com.br/sitemap-articles/v1/2020-${month}.xml`,
   language: 'pt-br',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

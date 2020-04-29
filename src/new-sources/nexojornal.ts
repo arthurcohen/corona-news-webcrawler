@@ -8,6 +8,7 @@ const source: Source = {
   sourceName: 'Nexo',
   sitemapUrl: `https://www.nexojornal.com.br/sitemap-2020-${month}.xml`,
   language: 'pt-br',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

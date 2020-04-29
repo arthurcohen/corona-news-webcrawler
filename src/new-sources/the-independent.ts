@@ -4,7 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'The Independent',
   sitemapUrl: 'https://www.independent.co.uk/googlenewssitemap',
-  language: 'en',
+  language: 'en-us',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

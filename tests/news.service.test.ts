@@ -13,6 +13,7 @@ const siteMapStub =
 
 const titleStub = 'Title stub';
 const imageUrlStub = 'http://sourcestub.com/imageStub';
+const url = 'https://g1.globo.com/sp/sorocaba-jundiai/noticia/2020/04/29/medico-que-contraiu-covid-19-e-surpreendido-com-festa-apos-cura-papai-voce-venceu.ghtml';
 const publishedDateStub = '01/01/0001 00:00:00';
 const htmlStub =
   `<html>
@@ -50,7 +51,8 @@ const newsStub: News[] = [
     imageUrl: 'http://sourcestub.com/imageUrl',
     pubDate: '01/01/0001 00:00:00',
     sourceName: 'sourceName',
-    url: 'http://sourcestub.com/url'
+    url: 'http://sourcestub.com/url',
+    rank: 10
   }
 ];
 
@@ -63,7 +65,7 @@ describe('given an existent sitemap', () => {
   });
 
   test('should get info from html news content', () => {
-    const news = newsService.getNewsFromHtml(htmlStub, sourceStub);
+    const news = newsService.getNewsFromHtml(htmlStub, sourceStub, url);
 
     expect(news.title).toBe(titleStub);
     expect(news.imageUrl).toBe(imageUrlStub);

@@ -4,6 +4,7 @@ export default {
     { name: 'corona', rank: 2 },
     { name: 'covid', rank: 2 },
     { name: 'curado', rank: 10 },
+    { name: 'vence', rank: 10 },
     { name: 'cura', rank: 5 },
     { name: 'curada', rank: 7 },
     { name: 'diminui', rank: 7 },

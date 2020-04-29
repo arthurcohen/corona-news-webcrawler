@@ -32,7 +32,9 @@ function getNewsFromHtml(html: string, source: Source, url: string): News {
   if (!pubDate) {
     const date1 = dateParser.getDateFromString(getProperty($, source.profile.publicationDatePattern).trim());
     const date2 = pubDate = dateParser.getDateFromURL(url);
+    const date3 = pubDate = dateParser.getDateFromURL(imageUrl);
     pubDate = !date1 ? date2 : date1;
+    pubDate = !pubDate ? date3 : pubDate;
   }
 
   const news: News = {

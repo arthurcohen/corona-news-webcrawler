@@ -8,6 +8,7 @@ const day = date.getDate();
 const source: Source = {
   sourceName: 'O Povo',
   sitemapUrl: `https://www.opovo.com.br/sitemap/2020/${month}/${day}.xml`,
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

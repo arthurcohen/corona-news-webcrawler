@@ -61,7 +61,7 @@ async function batch() {
       };
 
       if (!news.pubDate || news.pubDate === today) {
-        news.rank = newsService.calculateRank(news.title, languageOption);
+        news.rank = newsService.calculateRank(news.title, source.language);
         if (news.rank > 0) {
           allNews.push(news);
           const newsCSV = newsService.convertNewsToCsv(allNews);

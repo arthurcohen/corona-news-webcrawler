@@ -18,7 +18,7 @@ After downloading the latest [release](https://github.com/arthurcohen/corona-new
 cd ~/Downloads
 chmod a+x ./corona-news-webcrawler-linux
 ./corona-news-webcrawler-linux {language}
- ``` 
+``` 
 
 The {language} parameter can be `pt-br` (for crawling portuguese news) or `en-us` (for crawling ensligh news).
 
@@ -32,7 +32,7 @@ After downloading the latest [release](https://github.com/arthurcohen/corona-new
 cd ~/Downloads
 chmod a+x ./corona-news-webcrawler-linux
 ./corona-news-webcrawler-linux {language}
- ``` 
+``` 
 
 The {language} parameter can be `pt-br` (for crawling portuguese news) or `en-us` (for crawling ensligh news).
 

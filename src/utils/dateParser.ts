@@ -23,7 +23,7 @@ function getDateFromString(date): string {
   return day + '/' + month + '/' + year;
 }
 
-function formatDate() {
+function getTodayDate() {
   var d = new Date();
   var month = '' + (d.getMonth() + 1);
   var day = '' + d.getDate();
@@ -36,7 +36,7 @@ function formatDate() {
 }
 
 export default {
-  formatDate,
+  getTodayDate,
   getDateFromString,
   getDateFromURL
 };

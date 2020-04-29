@@ -6,7 +6,7 @@ const source: Source = {
   sourceName: 'O Globo',
   sitemapUrl: 'https://oglobo.globo.com/sitemap/today.xml',
   language: 'pt-br',
-  date: dateParser.formatDate(),
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

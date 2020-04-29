@@ -10,7 +10,7 @@ const source: Source = {
   sourceName: 'Exame',
   sitemapUrl: `https://exame.abril.com.br/sitemap.xml?yyyy=${year}&mm=${month}&dd=${day}`,
   language: 'pt-br',
-  date: dateParser.formatDate(),
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

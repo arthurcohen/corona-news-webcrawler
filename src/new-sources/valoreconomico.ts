@@ -9,7 +9,7 @@ const source: Source = {
   sourceName: 'Valor Econômico',
   sitemapUrl: `https://pox.globo.com/sitemap/valor/2020/${month}/${day}_1.xml`,
   language: 'pt-br',
-  date: dateParser.formatDate(),
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

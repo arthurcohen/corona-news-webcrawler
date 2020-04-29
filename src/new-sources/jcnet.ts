@@ -10,7 +10,7 @@ const source: Source = {
   sourceName: 'JC Net',
   sitemapUrl: `https://www.jcnet.com.br/sitemap/2020/${month}/${day}.xml`,
   language: 'pt-br',
-  date: dateParser.formatDate(),
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

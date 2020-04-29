@@ -6,7 +6,7 @@ const source: Source = {
   sourceName: 'UOL',
   sitemapUrl: 'https://noticias.uol.com.br/sitemap/v2/today.xml',
   language: 'pt-br',
-  date: dateParser.formatDate(),
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

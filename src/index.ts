@@ -1,11 +1,9 @@
 import axios from 'axios';
 import newsService from './services/news.service';
 import sourceFactory from './config/source-config';
-import dateParser from './utils/dateParser';
+import dataService from './services/data.service';
 
 async function batch() {
-  var today = dateParser.formatDate();
-  const allNews = [];
   let sources = await sourceFactory;
 
   const languageOption = process.argv.slice(2)[0];
@@ -57,17 +55,12 @@ async function batch() {
       }
 
       const news = {
-        ...newsService.getNewsFromHtml(httpResponse.data, source, url)
+        ...newsService.buildNews(httpResponse.data, source, url, languageOption)
       };
 
-      if (!news.pubDate || news.pubDate === today) {
-        news.rank = newsService.calculateRank(news.title, languageOption);
-        if (news.rank > 0) {
-          allNews.push(news);
-          const newsCSV = newsService.convertNewsToCsv(allNews);
-          newsService.exportNewsToCsv(newsCSV);
-          process.stdout.write('.');
-        }
+      if (newsService.checkNews(news)) {
+        dataService.saveNews(news);
+        process.stdout.write('.');
       }
     }
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);

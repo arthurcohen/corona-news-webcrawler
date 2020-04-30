@@ -4,7 +4,6 @@ import dataService from './services/data.service';
 import { Source } from './interfaces/source';
 
 async function batch(sourcesArray : Source[]) {
-
   process.stdout.write('fetching news from');
   for (const source of sourcesArray) {
     process.stdout.write(`\n${source.sourceName}: `);

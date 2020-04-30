@@ -3,6 +3,7 @@ import newsService from '../src/services/news.service';
 import News from '../src/interfaces/news';
 import * as fs from 'fs';
 import DirUtils from '../src/utils/DirUtils';
+import dataService from '../src/services/data.service';
 
 const siteMapStub =
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -29,6 +30,7 @@ const sourceStub =
   sourceName: 'SourceStub',
   sitemapUrl: 'http://sourcestub.com/sitemap',
   language: 'pt-br',
+  date: '',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -65,7 +67,7 @@ describe('given an existent sitemap', () => {
   });
 
   test('should get info from html news content', () => {
-    const news = newsService.getNewsFromHtml(htmlStub, sourceStub, url);
+    const news = newsService.buildNews(htmlStub, sourceStub, url);
 
     expect(news.title).toBe(titleStub);
     expect(news.imageUrl).toBe(imageUrlStub);
@@ -74,8 +76,8 @@ describe('given an existent sitemap', () => {
   });
 
   test('should write file from sources', () => {
-    const csvStub = newsService.convertNewsToCsv(newsStub);
-    const path = `${newsService.exportNewsToCsv(csvStub, testFilesPath)}`;
+    const csvStub = dataService.convertNewsToCsv(newsStub);
+    const path = `${dataService.exportNewsToCsv(csvStub, testFilesPath)}`;
 
     const data = fs.readFileSync(path);
     expect(data.toString()).toBe(csvStub);

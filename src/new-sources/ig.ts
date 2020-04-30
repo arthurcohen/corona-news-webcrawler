@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import dateParser from '../utils/dateParser';
 
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
+const today = dateParser.getTodayDate();
+const [month] = today.split('/');
 
 const source: Source = {
   sourceName: 'IG',

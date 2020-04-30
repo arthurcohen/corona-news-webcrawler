@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import dateParser from '../utils/dateParser';
 
 const source: Source = {
   sourceName: 'Época',
   sitemapUrl: 'https://oglobo.globo.com/sitemap/today-epoca.xml',
   language: 'pt-br',
+  date: dateParser.getTodayDate(),
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

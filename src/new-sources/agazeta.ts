@@ -1,12 +1,13 @@
+import dateParser from '../utils/dateParser';
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
-import dateParser from '../utils/dateParser';
 
 const today = dateParser.getTodayDate();
-const [day, month] = today.split('/');
+const [day, month, year] = today.split('/');
+
 const source: Source = {
-  sourceName: 'G1',
-  sitemapUrl: `http://pox.globo.com/sitemap/g1/2020/${month}/${day}_1.xml`,
+  sourceName: 'A Gazeta',
+  sitemapUrl: `https://www.agazeta.com.br/${year}/${month}/${year}-${month}-${day}.xml`,
   language: 'pt-br',
   date: today,
   profile: {
@@ -19,7 +20,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.glb-grid > main > div.content__signa-share > div.content__signature > div > div > p.content-publication-data__updated > time',
+      pattern: '',
       isProp: false
     }
   }

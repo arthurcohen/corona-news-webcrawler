@@ -2,8 +2,8 @@
 import { Source } from '../interfaces/source';
 
 const source: Source = {
-  sourceName: 'Estadão',
-  sitemapUrl: 'https://www.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
+  sourceName: 'Jornal Estado de Minas',
+  sitemapUrl: 'https://www.em.com.br/sitemapnews.xml',
   language: 'pt-br',
   profile: {
     titlePattern: {
@@ -15,7 +15,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: '#sw-P_1.3281644 > div > section > div > section.col-xs-12.col-content.col-center > div.box.area-select > div.n--noticia__state > div > p',
+      pattern: '',
       isProp: true
     }
   }

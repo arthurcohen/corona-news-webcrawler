@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
-
 import dateParser from '../utils/dateParser';
 
 const today = dateParser.getTodayDate();

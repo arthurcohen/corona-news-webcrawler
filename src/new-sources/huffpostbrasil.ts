@@ -1,13 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = date.getDate();
+import dateParser from '../utils/dateParser';
+
+const today = dateParser.getTodayDate();
+const [day, month] = today.split('/');
 
 const source: Source = {
   sourceName: 'Huff Post Brasil',
   sitemapUrl: `https://www.huffpostbrasil.com/sitemaps/archive/sitemap-2020-${month}-${day}.xml`,
   language: 'pt-br',
+  date: today,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

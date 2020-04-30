@@ -1,11 +1,17 @@
-// eslint-disable-next-line no-unused-vars
-import { Source } from '../interfaces/source';
+
+import dateParser from '../utils/dateParser';
 import sitemapUtils from '../utils/sitemapUtils';
 
+// eslint-disable-next-line no-unused-vars
+import { Source } from '../interfaces/source';
+
+const today = dateParser.getTodayDate();
+
 const source: Source = {
-  sourceName: 'CNN',
-  sitemapUrl: 'https://edition.cnn.com/sitemaps/cnn/news.xml',
-  language: 'en-us',
+  sourceName: 'O Popular',
+  sitemapUrl: 'https://www.opopular.com.br/news-sitemap.xml',
+  language: 'pt-br',
+  date: today,
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
@@ -17,8 +23,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > div.pg-special-article.pg-wrapper > article > div > div.pg-special-article__wrapper > div.pg-special-article__body > p.update-time',
-      isProp: true
+      pattern: '',
+      isProp: false
     }
   }
 };

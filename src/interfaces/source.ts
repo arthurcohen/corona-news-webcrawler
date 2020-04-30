@@ -8,6 +8,7 @@ export interface Source {
     sitemapUrl: string,
     language: string,
     date?: string,
+    filterUrlset?(urlSet: any) : any[],
     profile: {
         titlePattern: Pattern,
         imagePattern: Pattern,

@@ -35,7 +35,8 @@ export default {
     { name: 'eleva caso', rank: -5 },
     { name: 'morre', rank: -5 },
     { name: 'suicida', rank: -5 },
-    { name: 'suicidou', rank: -5 }
+    { name: 'suicidou', rank: -5 },
+    { name: 'desemprego', rank: -5 }
   ],
   'en-us': [
     { name: 'corona', rank: 2 },

@@ -8,17 +8,17 @@ import { Source, Pattern } from '../interfaces/source';
 import reservedWords from '../utils/reservedWords';
 import dateParser from '../utils/dateParser';
 
-async function getNewsUrlFromSitemap(sitemap: string): Promise<string[]> {
+async function getNewsUrlFromSitemap(sitemap: string, filterSitemapUrls?: (urlset: any) => any[]): Promise<string[]> {
   const parsedSitemap = await xmlParser.parseStringPromise(sitemap);
-  return getRecursiveUrlSet(parsedSitemap.urlset);
+  return getRecursiveUrlSet(parsedSitemap.urlset, filterSitemapUrls);
 };
 
-function getRecursiveUrlSet(urlset: any) {
+function getRecursiveUrlSet(urlset: any, filterSitemapUrls?: (urlset: any) => any[]) {
   if (urlset.urlset != null) {
-    return getRecursiveUrlSet(urlset.urlset[0]);
+    return getRecursiveUrlSet(urlset.urlset[0], filterSitemapUrls);
   }
-
-  return urlset.url.map((r) => r.loc[0]);
+  const urls = filterSitemapUrls ? filterSitemapUrls(urlset) : urlset.url;
+  return urls.map((r) => r.loc[0]);
 };
 
 function buildNews(html: string, source: Source, url: string): News {

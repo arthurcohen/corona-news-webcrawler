@@ -43,7 +43,7 @@ async function batch() {
       continue;
     }
 
-    const urls = await newsService.getNewsUrlFromSitemap(response.data);
+    const urls = await newsService.getNewsUrlFromSitemap(response.data, source.filterUrlset);
 
     for (const url of urls) {
       let httpResponse;

@@ -16,10 +16,10 @@ async function chooseLanguage() {
       }
     }
   ]);
-  chooseFonts(answers.language);
+  chooseSources(answers.language);
 };
 
-async function chooseFonts (language = 'pt-br') {
+async function chooseSources(language = 'pt-br') {
   let sources = await sourceFactory;
   sources = sources.filter(
     (s) => s.language.toLowerCase() === language.toLowerCase() || language === 'all'
@@ -29,7 +29,7 @@ async function chooseFonts (language = 'pt-br') {
     {
       type: 'checkbox',
       message: 'Select sources.',
-      name: 'fonts',
+      name: 'sources',
       choices: [...sources.map((item) => { return { name: item.sourceName }; }), { name: 'All' }],
       validate: function(answer) {
         if (answer.length < 1) {
@@ -41,12 +41,12 @@ async function chooseFonts (language = 'pt-br') {
   ]);
 
   let sourcesArray = [];
-  answers.fonts.filter(answer => {
+  answers.sources.filter(answer => {
     sources.filter(item => {
       if (answer === item.sourceName) sourcesArray.push(item);
     });
   });
-  if (answers.fonts.find(item => (item === 'All'))) sourcesArray = sources;
+  if (answers.sources.find(item => (item === 'All'))) sourcesArray = sources;
   batch(sourcesArray);
 };
 

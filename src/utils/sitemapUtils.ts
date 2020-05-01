@@ -1,14 +1,25 @@
 import dateParser from './dateParser';
 
-function getUrlDate(url:any) : string {
-  const urlNewsProp = url && url['news:news'] && url['news:news'][0];
-  let urlDateStr = urlNewsProp && urlNewsProp['news:publication_date'] &&
-    urlNewsProp['news:publication_date'][0];
+function getPubDate(url:any) : string {
+  const newsPropNames = ['news', 'n'];
+  let pubDate;
+  for (let i = 0; i < newsPropNames.length; i++) {
+    const newsProp = `${newsPropNames[i]}:news`;
+    const pubDateProp = `${newsPropNames[i]}:publication_date`;
+    const urlNewsProp = url && url[newsProp] && url[newsProp][0];
+    pubDate = urlNewsProp && urlNewsProp[pubDateProp] && urlNewsProp[pubDateProp][0];
+    if (pubDate) {
+      i = newsPropNames.length;
+    }
+  }
+  return pubDate;
+}
 
+function getUrlDate(url:any) : string {
+  let urlDateStr = getPubDate(url);
   if (!urlDateStr) {
     urlDateStr = url && url.lastmod[0];
   }
-
   return urlDateStr;
 }
 

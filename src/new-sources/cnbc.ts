@@ -1,11 +1,13 @@
 
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'CNBC',
   sitemapUrl: 'https://www.cnbc.com/sitemap_news.xml',
   language: 'en-us',
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

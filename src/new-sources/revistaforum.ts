@@ -4,7 +4,7 @@ import { Source } from '../interfaces/source';
 const source: Source = {
   sourceName: 'Revista Fórum',
   sitemapUrl: 'https://revistaforum.com.br/post_part1.xml',
-  language: 'en-us',
+  language: 'pt-br',
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

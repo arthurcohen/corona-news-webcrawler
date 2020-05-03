@@ -1,10 +1,13 @@
+
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
-  sourceName: 'UOL',
-  sitemapUrl: 'https://noticias.uol.com.br/sitemap/v2/today.xml',
-  language: 'pt-br',
+  sourceName: 'BBC',
+  sitemapUrl: 'https://www.bbc.com/sitemaps/https-sitemap-com-news-1.xml',
+  language: 'en-us',
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -15,7 +18,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'body > article > div:nth-child(2) > div > div.col-sm-24.col-md-16.col-lg-17.content-article > div > div.col-xs-8.col-sm-21.col-md-21 > div.image-content-pad > div.author',
+      pattern: 'body > div.pg-special-article.pg-wrapper > article > div > div.pg-special-article__wrapper > div.pg-special-article__body > p.update-time',
       isProp: true
     }
   }

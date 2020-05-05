@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'UOL',
   sitemapUrl: 'https://noticias.uol.com.br/sitemap/v2/today.xml',
   language: 'pt-br',
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

@@ -3,11 +3,11 @@ import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
 
 const today = dateParser.getTodayDate();
-const [day, month] = today.split('/');
+const [day, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'Veja Rio',
-  sitemapUrl: `https://vejario.abril.com.br/sitemap.xml?yyyy=2020&mm=${month}&dd=${day}`,
+  sitemapUrl: `https://vejario.abril.com.br/sitemap.xml?yyyy=${year}&mm=${month}&dd=${day}`,
   language: 'pt-br',
   date: today,
   profile: {

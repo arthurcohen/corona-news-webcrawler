@@ -1,15 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const today = dateParser.getTodayDate();
-const [day, month] = today.split('/');
+const [day, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'Veja',
-  sitemapUrl: `https://veja.abril.com.br/sitemap.xml?yyyy=2020&mm=${month}&dd=${day}`,
+  sitemapUrl: `https://veja.abril.com.br/sitemap.xml?yyyy=${year}&mm=${month}&dd=${day}`,
   language: 'pt-br',
-  date: today,
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

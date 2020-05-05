@@ -18,7 +18,7 @@ function getPubDate(url:any) : string {
 function getUrlDate(url:any) : string {
   let urlDateStr = getPubDate(url);
   if (!urlDateStr) {
-    urlDateStr = url && url.lastmod[0];
+    urlDateStr = url && url.lastmod && url.lastmod[0];
   }
   return urlDateStr;
 }

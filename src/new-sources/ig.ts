@@ -4,11 +4,11 @@ import dateParser from '../utils/dateParser';
 import sitemapUtils from '../utils/sitemapUtils';
 
 const today = dateParser.getTodayDate();
-const [, month] = today.split('/');
+const [, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'IG',
-  sitemapUrl: `https://ultimosegundo.ig.com.br/sitemap-articles/v1/2020-${month}.xml`,
+  sitemapUrl: `https://ultimosegundo.ig.com.br/sitemap-articles/v1/${year}-${month}.xml`,
   language: 'pt-br',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {

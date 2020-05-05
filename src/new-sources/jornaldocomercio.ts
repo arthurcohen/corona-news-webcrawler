@@ -3,11 +3,11 @@ import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
 
 const today = dateParser.getTodayDate();
-const [day, month] = today.split('/');
+const [day, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'Jornal do Comércio',
-  sitemapUrl: `https://jc.ne10.uol.com.br/sitemap/2019/${month}/${day}.xml`,
+  sitemapUrl: `https://jc.ne10.uol.com.br/sitemap/${year}/${month}/${day}.xml`,
   language: 'pt-br',
   date: today,
   profile: {

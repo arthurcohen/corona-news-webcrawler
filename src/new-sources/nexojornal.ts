@@ -4,11 +4,11 @@ import dateParser from '../utils/dateParser';
 import sitemapUtils from '../utils/sitemapUtils';
 
 const today = dateParser.getTodayDate();
-const [, month] = today.split('/');
+const [, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'Nexo',
-  sitemapUrl: `https://www.nexojornal.com.br/sitemap-2020-${month}.xml`,
+  sitemapUrl: `https://www.nexojornal.com.br/sitemap-${year}-${month}.xml`,
   language: 'pt-br',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {

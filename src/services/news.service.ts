@@ -29,11 +29,10 @@ function buildNews(html: string, source: Source, url: string): News {
   let pubDate = source.date;
 
   if (!pubDate) {
-    const date1 = dateParser.getDateFromString(getProperty($, source.profile.publicationDatePattern).trim());
-    const date2 = pubDate = dateParser.getDateFromURL(url);
-    const date3 = pubDate = dateParser.getDateFromURL(imageUrl);
-    pubDate = !date1 ? date2 : date1;
-    pubDate = !pubDate ? date3 : pubDate;
+    const dateFromDOM = dateParser.getDateFromString(getProperty($, source.profile.publicationDatePattern).trim());
+    const dateFromUrl = dateParser.getDateFromURL(url);
+    const dateFromImageUrl = dateParser.getDateFromURL(imageUrl);
+    pubDate = dateFromDOM || dateFromUrl || dateFromImageUrl;
   }
 
   const news: News = {

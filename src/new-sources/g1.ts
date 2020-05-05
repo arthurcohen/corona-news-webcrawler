@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 import dateParser from '../utils/dateParser';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const today = dateParser.getTodayDate();
 const [day, month] = today.split('/');
@@ -9,6 +10,7 @@ const source: Source = {
   sitemapUrl: `http://pox.globo.com/sitemap/g1/2020/${month}/${day}_1.xml`,
   language: 'pt-br',
   date: today,
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'Revista Fórum',
   sitemapUrl: 'https://revistaforum.com.br/post_part1.xml',
-  language: 'en-us',
+  language: 'pt-br',
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

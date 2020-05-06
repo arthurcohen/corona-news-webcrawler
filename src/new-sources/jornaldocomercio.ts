@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import dateParser from '../utils/dateParser';
 
-const date = new Date();
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const day = date.getDate();
+const today = dateParser.getTodayDate();
+const [day, month, year] = today.split('/');
 
 const source: Source = {
   sourceName: 'Jornal do Comércio',
-  sitemapUrl: `https://jc.ne10.uol.com.br/sitemap/2019/${month}/${day}.xml`,
+  sitemapUrl: `https://jc.ne10.uol.com.br/sitemap/${year}/${month}/${day}.xml`,
   language: 'pt-br',
+  date: today,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'Estadão',
   sitemapUrl: 'https://www.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
   language: 'pt-br',
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',

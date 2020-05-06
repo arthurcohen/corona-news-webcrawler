@@ -1,11 +1,12 @@
+
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
-  sourceName: 'Folha de S. Paulo',
-  sitemapUrl: 'https://www1.folha.uol.com.br/folha-online-sitemap.xml',
-  language: 'pt-br',
+  sourceName: 'CNBC',
+  sitemapUrl: 'https://www.cnbc.com/sitemap_news.xml',
+  language: 'en-us',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
@@ -17,7 +18,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'meta[property="article:published_time"]',
+      pattern: 'body > div.pg-special-article.pg-wrapper > article > div > div.pg-special-article__wrapper > div.pg-special-article__body > p.update-time',
       isProp: true
     }
   }

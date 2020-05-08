@@ -1,15 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
-import dateParser from '../utils/dateParser';
-
-const today = dateParser.getTodayDate();
-const [day, month] = today.split('/');
+import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'Huff Post Brasil',
-  sitemapUrl: `https://www.huffpostbrasil.com/sitemaps/archive/sitemap-2020-${month}-${day}.xml`,
+  sitemapUrl: 'https://www.huffpostbrasil.com/sitemaps/sitemap-google-news.xml',
   language: 'pt-br',
-  date: today,
+  filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
       pattern: 'meta[property="og:title"]',
@@ -20,7 +17,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: 'meta[property="bt:pubDate"]',
+      pattern: 'meta[property="article:published_time"]',
       isProp: true
     }
   }

@@ -16,7 +16,7 @@ function getDateFromString(date): string {
 
   if (!matches || matches.length <= 1) return '';
 
-  var day = matches[2].slice(0, 2);
+  var day = matches[2].substring(0, matches[2].indexOf('T')).padStart(2, '0');
   var month = matches[1];
   var year = matches[0];
 

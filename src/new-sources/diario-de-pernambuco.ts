@@ -4,7 +4,7 @@ import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'Diário de Pernambuco',
-  sitemapUrl: 'https://www.diariodepernambuco.com.br/noticia_ciencia-e-saude-sitemap.xml',
+  sitemapUrl: 'https://www.diariodepernambuco.com.br/noticia_mundo-sitemap.xml',
   language: 'pt-br',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {

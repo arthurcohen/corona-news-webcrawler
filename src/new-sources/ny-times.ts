@@ -3,9 +3,9 @@ import { Source } from '../interfaces/source';
 import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
-  sourceName: 'Estadão',
-  sitemapUrl: 'https://saude.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
-  language: 'pt-br',
+  sourceName: 'The New York Times',
+  sitemapUrl: 'https://www.nytimes.com/sitemaps/new/news.xml.gz',
+  language: 'en-us',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
@@ -17,7 +17,7 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: '#sw-P_1.3281644 > div > section > div > section.col-xs-12.col-content.col-center > div.box.area-select > div.n--noticia__state > div > p',
+      pattern: 'meta[property="article:published"]',
       isProp: true
     }
   }

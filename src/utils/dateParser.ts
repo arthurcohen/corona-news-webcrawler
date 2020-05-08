@@ -11,12 +11,20 @@ function getDateFromURL(url): string {
   return day + '/' + month + '/' + year;
 }
 
+function getDayFromString(day) {
+  const dayHasChar = day.indexOf('T') > 0;
+  if (dayHasChar) {
+    return day.substring(0, day.indexOf('T')).padStart(2, '0');
+  }
+  return day.slice(0, 2);
+}
+
 function getDateFromString(date): string {
   const matches = date.split('-');
 
   if (!matches || matches.length <= 1) return '';
 
-  var day = matches[2].slice(0, 2);
+  const day = getDayFromString(matches[2]);
   var month = matches[1];
   var year = matches[0];
 

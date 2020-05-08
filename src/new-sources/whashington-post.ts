@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import { Source } from '../interfaces/source';
 import sitemapUtils from '../utils/sitemapUtils';
+import dateParser from '../utils/dateParser';
 
 const source: Source = {
-  sourceName: 'Estadão',
-  sitemapUrl: 'https://saude.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
-  language: 'pt-br',
+  sourceName: 'The Washington Post',
+  sitemapUrl: 'https://www.washingtonpost.com/arcio/news-sitemap/',
+  language: 'en-us',
+  date: dateParser.getTodayDate(),
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {
     titlePattern: {
@@ -17,8 +19,8 @@ const source: Source = {
       isProp: true
     },
     publicationDatePattern: {
-      pattern: '#sw-P_1.3281644 > div > section > div > section.col-xs-12.col-content.col-center > div.box.area-select > div.n--noticia__state > div > p',
-      isProp: true
+      pattern: '',
+      isProp: false
     }
   }
 };

@@ -4,7 +4,7 @@ import sitemapUtils from '../utils/sitemapUtils';
 
 const source: Source = {
   sourceName: 'Estadão',
-  sitemapUrl: 'https://www.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
+  sitemapUrl: 'https://saude.estadao.com.br/sitemaps/auto/mes-atual/sitemap-news.xml',
   language: 'pt-br',
   filterUrlset: sitemapUtils.getTodayUrls,
   profile: {

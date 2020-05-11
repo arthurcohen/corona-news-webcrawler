@@ -3,23 +3,36 @@ import News from '../interfaces/news';
 import { Parser } from 'json2csv';
 import * as fs from 'fs';
 import * as path from 'path';
-const fileName = './the-good-news.csv';
+import * as csv from 'csv-parse/lib/sync';
+
+const fileName = './files/the-good-news.csv';
 const allNews = getNews();
 
 function getNews(): News[] {
   try {
-    const stringFile = fs.readFileSync(path.join(__dirname, fileName), 'utf8');
-    return JSON.parse(stringFile);
+    const stringFile = fs.readFileSync(path.join(process.cwd(), fileName), 'utf8');
+    const records = csv(stringFile, {
+      columns: true,
+      skip_empty_lines: true
+    });
+    return records;
   } catch (err) {
     return [];
   }
 }
 
 function saveNews(news: News) {
-  const obj = allNews.find(c => c.title === news.title);
+  let objIndex = -1;
+  const obj = allNews.find((c, index) => {
+    const isEuqal = c.title === news.title;
+    if (isEuqal) {
+      objIndex = index;
+    }
+    return isEuqal;
+  });
 
-  if (!obj) {
-    obj.read = true;
+  if (obj) {
+    allNews[objIndex].read = true;
   } else {
     allNews.push(news);
   }

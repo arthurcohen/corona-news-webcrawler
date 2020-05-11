@@ -4,6 +4,7 @@ export default interface News {
   imageUrl: string,
   sourceName: string,
   pubDate: string,
-  rank: number
+  rank: number,
+  read: boolean
 // eslint-disable-next-line semi
 };

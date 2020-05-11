@@ -41,6 +41,7 @@ function buildNews(html: string, source: Source, url: string): News {
     imageUrl,
     sourceName: source.sourceName.trim(),
     pubDate,
+    read: false,
     rank: calculateRank(title, source.language)
   };
 

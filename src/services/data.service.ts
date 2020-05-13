@@ -4,9 +4,22 @@ import { Parser } from 'json2csv';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'csv-parse/lib/sync';
+import { LocalStorage } from 'node-localstorage';
+import dateParser from '../utils/dateParser';
 
-const fileName = './files/the-good-news.csv';
-const allNews = getNews();
+let fileName = '';
+let allNews = [];
+const localStorage = new LocalStorage('./scratch');
+
+function configuraDataService(language:string) {
+  fileName = './files/the-good-news-' + language + '.csv';
+
+  if (dateParser.getTodayDate() !== localStorage.getItem('lastDayRun')) {
+    localStorage.setItem('lastDayRun', dateParser.getTodayDate());
+  } else {
+    allNews = getNews();
+  }
+}
 
 function getNews(): News[] {
   try {
@@ -63,5 +76,6 @@ export default {
   saveNews,
   exportNewsToCsv,
   convertNewsToCsv,
-  saveFile
+  saveFile,
+  configuraDataService
 };

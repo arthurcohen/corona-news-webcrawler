@@ -37,10 +37,9 @@ async function batch(sourcesArray : Source[]) {
         process.stdout.write('.');
       }
     }
+    dataService.saveFile();
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
-
-  dataService.saveFile();
 }
 
 export default batch;

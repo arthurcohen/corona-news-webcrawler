@@ -28,7 +28,7 @@ function getNews(): News[] {
       columns: true,
       skip_empty_lines: true
     });
-    records.array.forEach(element => {
+    records.forEach(element => {
       element.read = true;
     });
 

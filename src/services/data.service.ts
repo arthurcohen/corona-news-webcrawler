@@ -28,6 +28,10 @@ function getNews(): News[] {
       columns: true,
       skip_empty_lines: true
     });
+    records.array.forEach(element => {
+      element.read = true;
+    });
+
     return records;
   } catch (err) {
     return [];
@@ -35,18 +39,9 @@ function getNews(): News[] {
 }
 
 function saveNews(news: News) {
-  let objIndex = -1;
-  const obj = allNews.find((c, index) => {
-    const isEuqal = c.title === news.title;
-    if (isEuqal) {
-      objIndex = index;
-    }
-    return isEuqal;
-  });
+  const obj = allNews.find((c) => c.title === news.title);
 
-  if (obj) {
-    allNews[objIndex].read = true;
-  } else {
+  if (!obj) {
     allNews.push(news);
   }
 }

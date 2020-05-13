@@ -1,9 +1,12 @@
 export default {
-
   'pt-br': [
     { name: 'corona', rank: 2 },
     { name: 'covid', rank: 2 },
     { name: 'curado', rank: 10 },
+    { name: 'sobrevive', rank: 10 },
+    { name: 'recuperada', rank: 10 },
+    { name: 'se recupera', rank: 10 },
+    { name: 'recuperado', rank: 10 },
     { name: 'sucesso', rank: 10 },
     { name: 'vence', rank: 10 },
     { name: 'cura', rank: 5 },

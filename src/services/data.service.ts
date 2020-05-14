@@ -38,6 +38,10 @@ function getNews(): News[] {
   }
 }
 
+function filterNews(urls:string[]) {
+  return urls.filter(url => !allNews.some(news => news.url === url));
+}
+
 function saveNews(news: News) {
   const obj = allNews.find((c) => c.title === news.title);
 
@@ -72,5 +76,6 @@ export default {
   exportNewsToCsv,
   convertNewsToCsv,
   saveFile,
-  configuraDataService
+  configuraDataService,
+  filterNews
 };

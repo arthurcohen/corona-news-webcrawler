@@ -19,7 +19,9 @@ async function batch(sourcesArray : Source[], language:string) {
       continue;
     }
 
-    const urls = await newsService.getNewsUrlFromSitemap(response.data, source.filterUrlset);
+    let urls = await newsService.getNewsUrlFromSitemap(response.data, source.filterUrlset);
+    urls = dataService.filterNews(urls);
+
     for (const url of urls) {
       let httpResponse;
       try {

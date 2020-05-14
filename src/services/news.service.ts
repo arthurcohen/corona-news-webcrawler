@@ -49,7 +49,7 @@ function buildNews(html: string, source: Source, url: string): News {
 }
 
 function checkNews(news: News) {
-  return (!news.pubDate || news.pubDate === dateParser.getTodayDate()) && news.rank > 0;
+  return !news.pubDate || news.pubDate === dateParser.getTodayDate();
 }
 
 function getProperty($: CheerioStatic, pattern: Pattern): string {

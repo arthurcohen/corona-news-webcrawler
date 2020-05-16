@@ -16,6 +16,7 @@ function configuraDataService(language:string) {
 
   if (dateParser.getTodayDate() !== localStorage.getItem('lastDayRun')) {
     localStorage.setItem('lastDayRun', dateParser.getTodayDate());
+    allNews = [];
   } else {
     allNews = getNews();
   }
@@ -51,8 +52,10 @@ function saveNews(news: News) {
 }
 
 function saveFile() {
-  const newCSV = convertNewsToCsv(allNews);
-  exportNewsToCsv(newCSV);
+  if (allNews.length > 0) {
+    const newCSV = convertNewsToCsv(allNews);
+    exportNewsToCsv(newCSV);
+  }
 }
 
 function convertNewsToCsv(allNews: News[]): string {

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node build/index.js",
-    "test": "jest ./tests",
+    "test": "jest ./tests/*.ts",
     "dev": "ts-node index.ts",
     "build": "tsc",
     "pkg": "pkg . --out-path dist"
@@ -19,7 +19,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
+    "csv": "^5.3.2",
     "json2csv": "^5.0.0",
+    "node-localstorage": "^2.1.6",
     "pkg": "^4.4.8",
     "simplecrawler": "^1.1.8",
     "typescript": "^3.8.3",
@@ -31,6 +33,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@types/cheerio": "^0.22.17",
     "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
     "babel-jest": "^25.3.0",

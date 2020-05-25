@@ -15,7 +15,7 @@ const siteMapStub =
 const titleStub = 'Title stub';
 const imageUrlStub = 'http://sourcestub.com/imageStub';
 const url = 'https://g1.globo.com/sp/sorocaba-jundiai/noticia/2020/04/29/medico-que-contraiu-covid-19-e-surpreendido-com-festa-apos-cura-papai-voce-venceu.ghtml';
-const publishedDateStub = '01/01/0001 00:00:00';
+const publishedDateStub = '0001-01-01T00:00:00';
 const htmlStub =
   `<html>
     <head>
@@ -49,12 +49,13 @@ const sourceStub =
 
 const newsStub: News[] = [
   {
-    title: 'title',
-    imageUrl: 'http://sourcestub.com/imageUrl',
-    pubDate: '01/01/0001 00:00:00',
+    title: titleStub,
+    imageUrl: imageUrlStub,
+    pubDate: '01/01/0001',
     sourceName: 'sourceName',
-    url: 'http://sourcestub.com/url',
-    rank: 10
+    url: url,
+    rank: 10,
+    read: false
   }
 ];
 
@@ -68,14 +69,16 @@ describe('given an existent sitemap', () => {
 
   test('should get info from html news content', () => {
     const news = newsService.buildNews(htmlStub, sourceStub, url);
+    const expectedNews = newsStub[0];
 
-    expect(news.title).toBe(titleStub);
+    expect(news.title).toBe(expectedNews.title);
     expect(news.imageUrl).toBe(imageUrlStub);
-    expect(news.pubDate).toBe(publishedDateStub);
+    expect(news.pubDate).toBe(expectedNews.pubDate);
     expect(news.sourceName).toBe(sourceStub.sourceName);
   });
 
   test('should write file from sources', () => {
+    dataService.configuraDataService('pt-br');
     const csvStub = dataService.convertNewsToCsv(newsStub);
     const path = `${dataService.exportNewsToCsv(csvStub, testFilesPath)}`;
 

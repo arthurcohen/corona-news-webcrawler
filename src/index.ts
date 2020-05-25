@@ -4,8 +4,10 @@ import dataService from './services/data.service';
 // eslint-disable-next-line no-unused-vars
 import { Source } from './interfaces/source';
 
-async function batch(sourcesArray : Source[]) {
+async function batch(sourcesArray : Source[], language:string) {
   process.stdout.write('fetching news from');
+  dataService.configuraDataService(language);
+
   for (const source of sourcesArray) {
     process.stdout.write(`\n${source.sourceName}: `);
     const startTime = new Date().getTime();
@@ -17,7 +19,8 @@ async function batch(sourcesArray : Source[]) {
       continue;
     }
 
-    const urls = await newsService.getNewsUrlFromSitemap(response.data, source.filterUrlset);
+    let urls = await newsService.getNewsUrlFromSitemap(response.data, source.filterUrlset);
+    urls = dataService.filterNews(urls);
 
     for (const url of urls) {
       let httpResponse;
@@ -37,6 +40,7 @@ async function batch(sourcesArray : Source[]) {
         process.stdout.write('.');
       }
     }
+    dataService.saveFile();
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
 }

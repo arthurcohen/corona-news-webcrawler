@@ -41,6 +41,7 @@ function buildNews(html: string, source: Source, url: string): News {
     imageUrl,
     sourceName: source.sourceName.trim(),
     pubDate,
+    read: false,
     rank: calculateRank(title, source.language)
   };
 
@@ -48,7 +49,7 @@ function buildNews(html: string, source: Source, url: string): News {
 }
 
 function checkNews(news: News) {
-  return (!news.pubDate || news.pubDate === dateParser.getTodayDate()) && news.rank > 0;
+  return !news.pubDate || news.pubDate === dateParser.getTodayDate();
 }
 
 function getProperty($: CheerioStatic, pattern: Pattern): string {

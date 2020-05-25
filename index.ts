@@ -10,7 +10,7 @@ async function chooseLanguage() {
       type: 'list',
       name: 'language',
       message: 'Choose language.',
-      choices: [...new Set(sources.map((item) => item.language.toLowerCase())), 'All'],
+      choices: [...new Set(sources.map((item) => item.language.toLowerCase()))],
       filter: function(val) {
         return val.toLowerCase();
       }
@@ -39,7 +39,6 @@ async function chooseSources(language = 'pt-br') {
       }
     }
   ]);
-
   let sourcesArray = [];
   answers.sources.filter(answer => {
     sources.filter(item => {
@@ -47,7 +46,7 @@ async function chooseSources(language = 'pt-br') {
     });
   });
   if (answers.sources.find(item => (item === 'All'))) sourcesArray = sources;
-  batch(sourcesArray);
+  batch(sourcesArray, language);
 };
 
 chooseLanguage();

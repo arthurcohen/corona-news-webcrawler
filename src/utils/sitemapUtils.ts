@@ -2,8 +2,8 @@ import dateParser from './dateParser';
 
 function getPubDate(url:any) : string {
   const newsPropPrefixes = ['news', 'n'];
-  
-  for (let newsPropPrefix of newsPropPrefixes) {
+
+  for (const newsPropPrefix of newsPropPrefixes) {
     const newsProp = `${newsPropPrefix}:news`;
     const pubDateProp = `${newsPropPrefix}:publication_date`;
     const urlNewsProp = url && url[newsProp] && url[newsProp][0];

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node build/index.js",
-    "test": "jest ./tests",
+    "test": "jest ./tests/*.ts",
     "dev": "ts-node index.ts",
     "build": "tsc",
     "pkg": "pkg . --out-path dist"

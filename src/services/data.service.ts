@@ -8,12 +8,14 @@ import { LocalStorage } from 'node-localstorage';
 import dateParser from '../utils/dateParser';
 
 let fileName = '';
+const dirName = './files';
+let filePath = '';
 let allNews = [];
 const localStorage = new LocalStorage('./scratch');
 
 function configuraDataService(language:string) {
-  fileName = './files/the-good-news-' + language + '.csv';
-
+  fileName = 'the-good-news-' + language + '.csv';
+  filePath = `${dirName}/${fileName}`;
   if (dateParser.getTodayDate() !== localStorage.getItem('lastDayRun')) {
     localStorage.setItem('lastDayRun', dateParser.getTodayDate());
     allNews = [];
@@ -24,7 +26,7 @@ function configuraDataService(language:string) {
 
 function getNews(): News[] {
   try {
-    const stringFile = fs.readFileSync(path.join(process.cwd(), fileName), 'utf8');
+    const stringFile = fs.readFileSync(path.join(process.cwd(), filePath), 'utf8');
     const records = csv(stringFile, {
       columns: true,
       skip_empty_lines: true
@@ -63,15 +65,17 @@ function convertNewsToCsv(allNews: News[]): string {
   return parser.parse(allNews);
 }
 
-function exportNewsToCsv(csv: string): string {
+function exportNewsToCsv(csv: string, filePath?: string): string {
+  const dir = filePath || dirName;
+  const fullPath = `${dir}/${fileName}`;
   try {
-    fs.mkdirSync('./files');
+    fs.mkdirSync(dir);
   } catch {
     // dir already exists
   }
-  fs.writeFileSync(fileName, csv, 'utf8');
+  fs.writeFileSync(fullPath, csv, 'utf8');
 
-  return fileName;
+  return fullPath;
 }
 
 export default {

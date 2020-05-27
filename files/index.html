@@ -26,6 +26,76 @@
           window.FileList &&
           window.Blob
         ) {
+
+          function getTableContent(news){
+            var newsObj = $.csv.toObjects(news);
+            var newsRows = [];
+            newsObj.forEach((element) => {
+              if (element.rank > 0 && element.read === "false") {
+                newsRows.push([
+                  element.title + '	'+ element.url+ '	'+ element.imageUrl + '	'+ element.sourceName+ '	'+ element.pubDate,
+                  element.title,
+                  `<a href="${element.url}" target="_blank"> link </a>`,
+                  `<a href="${element.imageUrl}"> link </a>`,
+                  element.sourceName,
+                  element.pubDate,
+                  element.rank,
+                ]);
+              }
+            });
+            return newsRows;
+          }
+
+          function getDatatable(rowsData){
+            return $("#example").DataTable({
+              data: rowsData.sort((a, b) => b[6] - a[6]),
+              columns: [
+                { 
+                  title: "Button",
+                },
+                { title: "Title" },
+                { title: "Url" },
+                { title: "ImageURL" },
+                { title: "SourceName" },
+                { title: "pubDate" },
+                { title: "rank" },
+              ],
+              columnDefs: [
+                  {
+                      "targets": [ 0 ],
+                      "orderable": false,
+                      "searchable": false,
+                      "data": null,
+                      "defaultContent": "<button>Copy</button>"
+                  },
+                  {
+                      "targets": [ 2 ],
+                      "searchable": false,
+                      "orderable": false,
+                  },
+                  {
+                      "targets": [ 3 ],
+                      "visible": false,
+                      "searchable": false
+                  },
+                  {
+                      "targets": [ 4 ],
+                      "visible": false,
+                      "searchable": false
+                  },{
+                      "targets": [ 5 ],
+                      "visible": false,
+                      "searchable": false
+                  },
+                  {
+                      "targets": [ 6 ],
+                      "visible": false,
+                      "searchable": false
+                  }
+              ]
+            });
+          }
+
           document.getElementById("filetoRead").addEventListener(
             "change",
             function () {
@@ -35,75 +105,21 @@
                 var reader = new FileReader();
 
                 reader.onload = function (evt) {
-                  console.log(evt);
-                  var news = $.csv.toObjects(evt.target.result);
-                  var newsRows = [];
-                  news.forEach((element) => {
-                    if (element.rank > 0 && element.read === "false") {
-                      newsRows.push([
-                        element.title + '	'+element.url+ '	'+element.imageUrl + '	'+element.sourceName+ '	'+ element.pubDate,
-                        element.title,
-                        element.url,
-                        element.imageUrl,
-                        element.sourceName,
-                        element.pubDate,
-                        element.rank,
-                      ]);
-                    }
-                  });
 
+                  $("#loadFile").hide();
+                  newsRows = getTableContent(evt.target.result);
+                  var table =  getDatatable(newsRows);
 
-
-                  var table =  $("#example").DataTable({
-                    data: newsRows.sort((a, b) => b[6] - a[6]),
-                    columns: [
-                      { title: "Button" },
-                      { title: "Title" },
-                      { title: "Url" },
-                      { title: "ImageURL" },
-                      { title: "SourceName" },
-                      { title: "pubDate" },
-                      { title: "rank" },
-                    ],
-                    columnDefs: [
-                        {
-                            "targets": [ 3 ],
-                            "visible": false,
-                            "searchable": false
-                        },
-                        {
-                            "targets": [ 4 ],
-                            "visible": false,
-                            "searchable": false
-                        },{
-                            "targets": [ 5 ],
-                            "visible": false,
-                            "searchable": false
-                        },
-                        {
-                            "targets": [ 6 ],
-                            "visible": false,
-                            "searchable": false
-                        },
-                        {
-                            "targets": [ 0 ],
-                            "searchable": false,
-                            "data": null,
-                            "defaultContent": "<button>Copy</button>"
-                        },
-                    ]
-                });
-
-                $('#example tbody').on( 'click', 'button', async function () {
-                       var data = table.row( $(this).parents('tr') ).data();
-                       try {
-                          await navigator.clipboard.writeText(data[0])
-                          event.target.textContent = 'Copied to clipboard'
-                        } catch (err) {
-                          console.error('Failed to copy!', err)
-                        }
-                     } );
-             };
+                  $('#example tbody').on( 'click', 'button', async function () {
+                      var data = table.row( $(this).parents('tr') ).data();
+                      try {
+                        await navigator.clipboard.writeText(data[0])
+                        event.target.textContent = 'Copied to clipboard'
+                      } catch (err) {
+                        console.error('Failed to copy!', err)
+                      }
+                    });
+                };
 
                 reader.onerror = function (evt) {
                   console.error("An error ocurred reading the file", evt);
@@ -125,13 +141,12 @@
     <div style="margin-top: 50px;" class="row justify-content-center">
       <h2>Welcome, I'm the Good News Robot</h2>
     </div>
- 
-  <div class='col'>
-    <h5 style="margin-top: 50px;">Select csv from folder:</h5>
-    <input style="margin-top: 10px;" type="file" id="filetoRead" />
-  </div>
-   
-  </br>
+
+    <div id="loadFile" class='col'>
+      <h5 style="margin-top: 50px;">Select csv from folder:</h5>
+      <input style="margin-top: 10px;" type="file" id="filetoRead" />
+    </div>
+    </br>
     <div class="col-sm-12">
         <table
         id="example"

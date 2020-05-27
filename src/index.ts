@@ -46,9 +46,9 @@ async function batch(sourcesArray: Source[], language: string) {
     }
 
     dataService.saveFile();
-    opn('./files/index.html');
     process.stdout.write(` (${new Date().getTime() - startTime} ms)`);
   }
+  opn('./files/index.html');
 }
 
 export default batch;

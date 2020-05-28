@@ -1,5 +1,6 @@
 export default {
   'pt-br': [
+    { name: 'concurso', rank: -10 },
     { name: 'corona', rank: 2 },
     { name: 'covid', rank: 2 },
     { name: 'curado', rank: 10 },

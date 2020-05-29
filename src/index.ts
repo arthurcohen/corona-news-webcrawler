@@ -29,7 +29,9 @@ async function batch(sourcesArray: Source[], language: string) {
     for (const url of urls) {
       let httpResponse;
       try {
-        httpResponse = await axios.get(url);
+        httpResponse = await axios.get(url, {
+          timeout: 10000
+        });
       } catch (e) {
         process.stdout.write('x');
         continue;
